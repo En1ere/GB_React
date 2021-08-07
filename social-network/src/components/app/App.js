@@ -1,51 +1,38 @@
-import { useState, useEffect } from "react";
-import { Message } from "../message/Message";
+import { Grid, makeStyles } from "@material-ui/core";
+import { ChatList, MessageList } from "../";
 import "./app.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+
+const useStyles = makeStyles((theme) => {
+  return {
+    root: {
+      flexGrow: 1,
+      background: theme.light.backgroundColor,
+      color: theme.light.textColor,
+    },
+  };
+});
 
 export function App() {
-  const [messages, setMessages] = useState([
-    { value: "Hello, I'm Alex", author: "Alex" },
-    { value: "Hey", author: "Ann" },
-  ]);
-  const [value, setValue] = useState("");
-
-  const handleSendMessage = () => {
-    if (!value) {
-      return;
-    }
-    setMessages((state) => [...state, { value, author: "Me" }]);
-    setValue("");
-  };
-
-  useEffect(() => {
-    if (messages[messages.length - 1].author === "Me") {
-      setTimeout(() => {
-        setMessages((state) => [
-          ...state,
-          { value: "Hello world! I am bot", author: "Bot" },
-        ]);
-      }, 2000);
-    }
-  }, [messages]);
+  const classes = useStyles();
 
   return (
-    <div>
-      <header className="header__app">
+    <div className={`${classes.root} app`}>
+      <header className="header">
         <h1>Welcome</h1>
       </header>
-      <main>
-        <div>
-          <Message messages={messages} />
-          <div className="message__input">
-            <input value={value} onChange={(e) => setValue(e.target.value)} />
-            <button onClick={handleSendMessage}>
-              <FontAwesomeIcon icon={faPaperPlane} />
-            </button>
-          </div>
+      <main className="main">
+        <div className={classes.root}>
+          <Grid container={true} spacing={3}>
+            <Grid item={true} xs={3}>
+              <ChatList />
+            </Grid>
+            <Grid item={true} xs={8}>
+              <MessageList />
+            </Grid>
+          </Grid>
         </div>
       </main>
+      <footer className="footer">&copy; 2021</footer>
     </div>
   );
 }
