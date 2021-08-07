@@ -1,0 +1,23 @@
+@import "../../style/global.scss";
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.header,
+.footer {
+  background-color: $secondColor;
+  color: $textColor;
+  font-size: 26px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  box-sizing: border-box;
+}
+.main {
+  width: 100%;
+}
