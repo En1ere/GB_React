@@ -1,64 +1,59 @@
 import { Input, InputAdornment } from "@material-ui/core";
 import { Send } from "@material-ui/icons";
-import { useState, useEffect } from "react";
-import "./message-list.scss";
+import { useEffect, useRef, useCallback } from "react";
+import { Message } from "./message";
+import styles from "./message-list.module.scss";
 
-export const MessageList = () => {
-  const [messages, setMessages] = useState([
-    { value: "Hello, I'm Alex", author: "Alex" },
-    { value: "Hey", author: "Ann" },
-  ]);
-
-  const [value, setValue] = useState("");
+export const MessageList = ({
+  messages,
+  value,
+  sendMessage,
+  handleChangeValue,
+}) => {
+  const ref = useRef();
 
   const handleSendMessage = () => {
-    if (!value) {
-      return;
+    if (value) {
+      sendMessage({ author: "User", message: value });
     }
-    setMessages((state) => [...state, { value, author: "Me" }]);
-    setValue("");
   };
 
   const handlePressInput = ({ code }) => {
     if (code === "Enter" || code === "NumpadEnter") {
-      setMessages((state) => [...state, { value, author: "Me" }]);
-      setValue("");
+      handleSendMessage();
     }
   };
 
-  useEffect(() => {
-    if (messages[messages.length - 1].author === "Me") {
-      setTimeout(() => {
-        setMessages((state) => [
-          ...state,
-          { value: "Hello world! I am bot", author: "Bot" },
-        ]);
-      }, 1500);
+  const handleScrollBottom = useCallback(() => {
+    if (ref.current) {
+      ref.current.scrollTo(0, ref.current.scrollHeight);
     }
   }, [messages]);
 
+  useEffect(() => {
+    handleScrollBottom();
+  }, [handleScrollBottom]);
+
   return (
-    <div className="messages__list">
-      <div className="messages">
+    <div>
+      <div ref={ref} className={styles.messages}>
         {messages.map((message, id) => (
-          <div className="messages__box" key={id}>
-            <p className="messages__box-head">{message.author}:</p>
-            <p className="messages__box-text">{message.value} </p>
-          </div>
+          <Message key={id} {...message} />
         ))}
       </div>
 
-      <Input className="messages__input"
-        autoFocus
-        multiline
+      <Input
+        className={styles.input}
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={handleChangeValue}
         onKeyPress={handlePressInput}
         fullWidth={true}
         placeholder="Введите сообщение..."
         endAdornment={
           <InputAdornment position="end">
-            <Send onClick={handleSendMessage} />
+            {value && (
+              <Send onClick={handleSendMessage} className={styles.icon} />
+            )}
           </InputAdornment>
         }
       />

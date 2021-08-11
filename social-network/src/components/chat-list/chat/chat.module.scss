@@ -1,0 +1,29 @@
+@import "../../../style/global.scss";
+.icon,
+.text {
+  color: $secondColor;
+}
+.chatItem {
+  height: 70px;
+}
+.text {
+  height: 20px;
+  overflow: hidden;
+}
+.chat {
+  color: $secondColor;
+}
+.text span {
+  font-size: 14px;
+  overflow: hidden;
+}
+
+.description {
+  width: 100%;
+  overflow: hidden;
+}
+
+.description .text:last-child {
+  text-align: right;
+  color: $secondColor;
+}

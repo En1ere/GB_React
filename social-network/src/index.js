@@ -1,7 +1,8 @@
 import { ThemeProvider, createTheme } from "@material-ui/core";
 import React from "react";
 import ReactDOM from "react-dom";
-import { App } from "./components";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Chat, MainPage } from "./pages";
 import "./style/global.scss";
 
 const theme = createTheme({
@@ -17,9 +18,15 @@ const theme = createTheme({
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <Switch>
+          <Route path="/chat" component={() => <Chat />}></Route>
+          <Route path="/" component={() => <MainPage />}></Route>
+          <Route path="*" component={() => <h1>Error 404</h1>}></Route>
+        </Switch>
+      </ThemeProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
