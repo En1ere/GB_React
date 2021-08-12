@@ -7,6 +7,7 @@ import {
   ChatList,
   MessageList,
   Footer,
+  ContentNoChat,
 } from "../components";
 
 export function Chat() {
@@ -44,7 +45,7 @@ export function Chat() {
                 <Redirect to="/chat" />
               )}
               <Route exact={true} path="/chat">
-                <h1>выберите сообщение</h1>
+                <ContentNoChat />
               </Route>
             </Layout>
           )}

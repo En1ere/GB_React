@@ -63,20 +63,20 @@ export function MessageProvider({ children }) {
 
   useEffect(() => {
     let timerId = null;
-    console.log(messages[roomId]);
-    const lastMessage = messages[roomId][messages[roomId].length - 1];
+    if (messages[roomId]) {
+      const lastMessage = messages[roomId][messages[roomId].length - 1] || "";
 
-    if (lastMessage?.author === "User") {
-      timerId = setTimeout(
-        () =>
-          actions.sendMessage({
-            message: `Hello from bot to room - ${roomId}`,
-            author: "Bot",
-          }),
-        1000
-      );
+      if (lastMessage?.author === "User") {
+        timerId = setTimeout(
+          () =>
+            actions.sendMessage({
+              message: `Hello from bot to room - ${roomId}`,
+              author: "Bot",
+            }),
+          1000
+        );
+      }
     }
-
     return () => clearInterval(timerId);
   }, [messages, roomId, actions]);
 
