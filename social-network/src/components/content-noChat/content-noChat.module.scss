@@ -1,0 +1,15 @@
+@import "../../style/global.scss";
+
+.contentNoChat {
+  box-shadow: 0px 0px 8px 1px rgba(56, 56, 56, 0.2) inset;
+  height: 500px;
+  padding: 20px;
+  background-color: $firstColor;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contentNoChatText {
+  color: $secondColor;
+  font-size: 24px;
+}
