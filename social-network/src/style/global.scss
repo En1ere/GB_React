@@ -9,3 +9,28 @@ $textColor: #f0ffff;
   font-family: "Josefin Sans", sans-serif;
   font-weight: 400;
 }
+.wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  & button {
+    font-size: 26px;
+    border: none;
+    margin-bottom: 20px;
+    color: $textColor;
+    background-color: $secondColor;
+    padding: 10px;
+    &:hover {
+      cursor: pointer;
+      color: $secondColor;
+      background-color: inherit;
+      transition: all 0.3s;
+    }
+  }
+}

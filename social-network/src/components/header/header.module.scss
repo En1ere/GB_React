@@ -6,11 +6,26 @@
   font-size: 26px;
   height: 150px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 10px 0;
   box-sizing: border-box;
 }
+.themes {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.themesIconLight {
+  color: $textColor;
+}
+.themesIconDark {
+  color: $secondColor;
+}
 .headerText {
   font-weight: 200;
+  margin-bottom: 40px;
 }

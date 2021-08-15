@@ -6,18 +6,7 @@
   justify-content: space-between;
   overflow: hidden;
 }
-.header,
-.footer {
-  background-color: $secondColor;
-  color: $textColor;
-  font-size: 26px;
-  height: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 0;
-  box-sizing: border-box;
-}
+
 .content {
   display: flex;
   padding-right: 20px;

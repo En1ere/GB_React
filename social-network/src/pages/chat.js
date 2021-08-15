@@ -3,10 +3,8 @@ import { Switch, Route, useHistory, Redirect } from "react-router-dom";
 import {
   MessageProvider,
   Layout,
-  Header,
   ChatList,
   MessageList,
-  Footer,
   ContentNoChat,
 } from "../components";
 
@@ -32,11 +30,7 @@ export function Chat() {
       <Route path={["/chat/:roomId", "/chat"]}>
         <MessageProvider>
           {([state, actions]) => (
-            <Layout
-              header={<Header />}
-              chats={<ChatList {...state} />}
-              footer={<Footer />}
-            >
+            <Layout chats={<ChatList {...state} />}>
               {state.hasRoomById ? (
                 <Route path="/chat/:roomId">
                   <MessageList {...state} {...actions} />
