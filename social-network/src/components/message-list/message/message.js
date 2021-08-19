@@ -5,7 +5,7 @@ export function Message({ author, message }) {
   return (
     <div
       className={classNames(styles.message, {
-        [styles.currentMessage]: author === "User",
+        [styles.currentMessage]: author === "Me",
       })}
     >
       <h3>{message}</h3>

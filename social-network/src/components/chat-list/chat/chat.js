@@ -1,9 +1,17 @@
 import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
+import { memo } from "react";
+import { useSelector } from "react-redux";
 import CloseIcon from "@material-ui/icons/Close";
 import styles from "./chat.module.scss";
 
-export function Chat({ title, selected, handleListItemClick, lastMessage }) {
+function ChatView({ title, selected, handleListItemClick }) {
+  const messages = useSelector((state) => {
+    console.log("update");
+    return state.messages.messages[title];
+  });
+  const lastMessage = messages[messages.length - 1];
+  
   return (
     <ListItem
       button={true}
@@ -30,8 +38,10 @@ export function Chat({ title, selected, handleListItemClick, lastMessage }) {
         </ListItemText>
       </div>
       <ListItemIcon className={styles.iconClose}>
-        <CloseIcon className={styles.iconClose}/>
+        <CloseIcon className={styles.iconClose} />
       </ListItemIcon>
     </ListItem>
   );
 }
+
+export const Chat = memo(ChatView);

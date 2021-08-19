@@ -20,7 +20,7 @@ export function Header() {
       <div className={styles.themes}>
         <Brightness4Icon
           className={classNames(styles.themesIconLight, {
-            [styles.themesIconDark]: isLightTheme === true,
+            [styles.themesIconDark]: isLightTheme === false,
           })}
         />
         <Switch
