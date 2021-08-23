@@ -1,17 +1,19 @@
 import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
+// import classnames from "classnames";
 import { memo } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CloseIcon from "@material-ui/icons/Close";
+import { removeConversationById } from "../../../store/conversations";
 import styles from "./chat.module.scss";
 
 function ChatView({ title, selected, handleListItemClick }) {
   const messages = useSelector((state) => {
-    console.log("update");
-    return state.messages.messages[title];
+    return state.messages.messages[title] || [];
   });
+  const dispatch = useDispatch();
   const lastMessage = messages[messages.length - 1];
-  
+
   return (
     <ListItem
       button={true}
@@ -38,7 +40,10 @@ function ChatView({ title, selected, handleListItemClick }) {
         </ListItemText>
       </div>
       <ListItemIcon className={styles.iconClose}>
-        <CloseIcon className={styles.iconClose} />
+        <CloseIcon
+          onClick={() => dispatch(removeConversationById(title))}
+          className={styles.iconClose}
+        />
       </ListItemIcon>
     </ListItem>
   );

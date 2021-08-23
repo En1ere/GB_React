@@ -3,12 +3,9 @@ import { Send } from "@material-ui/icons";
 import { useEffect, useRef, useCallback } from "react";
 import { Message } from "./message";
 import { useParams } from "react-router-dom";
-import { sendMessage } from "../../store/messages";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  handleChangeMessageValue,
-  clearMessageValue,
-} from "../../store/conversations";
+import { handleChangeMessageValue } from "../../store/conversations";
+import { sendMessageWithThunk, editMessageThunk } from "../../store/messages";
 import styles from "./message-list.module.scss";
 
 export const MessageList = () => {
@@ -16,6 +13,9 @@ export const MessageList = () => {
   const dispatch = useDispatch();
   const messages = useSelector((state) => {
     return state.messages.messages[roomId] || [];
+  });
+  const updateMessageId = useSelector((state) => {
+    return state.conversations.updateMessageId;
   });
   const value = useSelector((state) => {
     return (
@@ -29,8 +29,11 @@ export const MessageList = () => {
 
   const handleSendMessage = () => {
     if (value) {
-      dispatch(sendMessage({ author: "Me", message: value }, roomId));
-      dispatch(clearMessageValue(roomId));
+      if (updateMessageId) {
+        dispatch(editMessageThunk(value, roomId, updateMessageId));
+        return;
+      }
+      dispatch(sendMessageWithThunk({ author: "Me", message: value }, roomId));
     }
   };
 
@@ -54,7 +57,7 @@ export const MessageList = () => {
     <div>
       <div ref={ref} className={styles.messages}>
         {messages.map((message, id) => (
-          <Message key={id} {...message} />
+          <Message key={id} message={message} />
         ))}
       </div>
 

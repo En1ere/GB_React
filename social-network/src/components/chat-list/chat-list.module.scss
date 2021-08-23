@@ -1,8 +1,12 @@
 @import "../../style/global.scss";
 
+.chatList__wrapper {
+  width: 200px;
+  height: 500px;
+}
 .chatList {
   box-shadow: 0px 0px 14px 0px rgba(111, 92, 86, 0.2) inset;
-  height: 500px;
+  height: 464px;
   width: 200px;
   color: $secondColor;
   background-color: $firstColor;

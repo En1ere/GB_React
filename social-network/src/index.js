@@ -3,10 +3,11 @@ import { Header, Footer } from "./components";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 import { DefaultThemeProvider } from "./components/theme-context";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Chat, MainPage, Profile } from "./pages";
-import { store } from "./store";
+import { store, persistore } from "./store";
 import "./style/global.scss";
 
 const themes = {
@@ -23,20 +24,22 @@ const themes = {
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <DefaultThemeProvider themes={themes} initialTheme="light">
-          <div className="wrapper">
-            <Header />
-            <Switch>
-              <Route path="/chat" component={() => <Chat />}></Route>
-              <Route path="/profile" component={() => <Profile />}></Route>
-              <Route path="/" component={() => <MainPage />}></Route>
-              <Route path="*" component={() => <h1>Error 404</h1>}></Route>
-            </Switch>
-            <Footer />
-          </div>
-        </DefaultThemeProvider>
-      </BrowserRouter>
+      <PersistGate loading={null} persistor={persistore}>
+        <BrowserRouter>
+          <DefaultThemeProvider themes={themes} initialTheme="light">
+            <div className="wrapper">
+              <Header />
+              <Switch>
+                <Route path="/chat" component={() => <Chat />}></Route>
+                <Route path="/profile" component={() => <Profile />}></Route>
+                <Route path="/" component={() => <MainPage />}></Route>
+                <Route path="*" component={() => <h1>Error 404</h1>}></Route>
+              </Switch>
+              <Footer />
+            </div>
+          </DefaultThemeProvider>
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
