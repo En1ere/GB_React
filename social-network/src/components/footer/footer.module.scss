@@ -1,0 +1,16 @@
+@import "../../style/global.scss";
+
+.footer {
+  background-color: $secondColor;
+  color: $textColor;
+  font-size: 20px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  box-sizing: border-box;
+}
+.footerText {
+    font-weight: 200;
+}
