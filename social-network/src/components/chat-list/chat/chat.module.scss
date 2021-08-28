@@ -1,0 +1,52 @@
+@import "../../../style/global.scss";
+a {
+  text-decoration: none;
+}
+.iconClose {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.icon,
+.text {
+  color: $secondColor;
+}
+.chatItem {
+  height: 70px;
+}
+.title {
+  color: $secondColor;
+  font-weight: 600;
+  height: 15px;
+}
+.text {
+  height: 20px;
+  overflow: hidden;
+  font-weight: 100;
+}
+.chat {
+  color: $secondColor;
+}
+.text span {
+  font-size: 14px;
+  overflow: hidden;
+  font-weight: 200;
+  color: $secondColor;
+  opacity: 0.8;
+  height: 20px;
+}
+.date {
+  height: 15px;
+  color: $secondColor;
+  opacity: 0.6;
+  font-size: 12px;
+  text-align: right;
+}
+.description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  overflow: hidden;
+  height: 70px;
+}

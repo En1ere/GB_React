@@ -1,0 +1,43 @@
+@import "../../style/global.scss";
+
+.wrapper {
+  background-color: $secondColor;
+  height: 500px;
+  width: 70%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 25px;
+  color: $textColor;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  text-align: center;
+  flex: none;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+.wrapper ul li {
+  text-decoration: none;
+  list-style-type: none;
+  padding: 10px 0;
+  cursor: pointer;
+  font-size: 22px;
+}
+.wrapper ul li:hover {
+  color: $firstColor;
+}
+.wrapper ul {
+  overflow-y: auto;
+  flex-grow: 1;
+  border: 1px solid $textColor;
+  padding: 15px;
+}
+
+.active {
+  border-bottom: 1px solid #fff;
+}
