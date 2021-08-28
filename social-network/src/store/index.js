@@ -3,14 +3,11 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import thunk from "redux-thunk";
 import { conversationsReducer } from "./conversations";
+import { getGistsApi, searchGistsByUserNameApi } from "../api/gists";
+import { gistsReducer } from "./gists";
 import { messagesReducer } from "./messages";
 import { profileReducer } from "./profile";
-import {
-
-  botSendMessage,
-  timeoutScheduler,
-  report,
-} from "./middlewares";
+import { botSendMessage, timeoutScheduler, report } from "./middlewares";
 
 const persistConfig = {
   key: "root",
@@ -25,13 +22,19 @@ const persistreducer = persistReducer(
     profile: profileReducer,
     conversations: conversationsReducer,
     messages: messagesReducer,
+    gists: gistsReducer,
   })
 );
 
 export const store = createStore(
   persistreducer,
   compose(
-    applyMiddleware(report, thunk, botSendMessage, timeoutScheduler),
+    applyMiddleware(
+      report,
+      thunk.withExtraArgument({ getGistsApi, searchGistsByUserNameApi }),
+      botSendMessage,
+      timeoutScheduler
+    ),
     window.__REDUX_DEVTOOLS_EXTENSION__
       ? window.__REDUX_DEVTOOLS_EXTENSION__()
       : (args) => args

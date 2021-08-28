@@ -5,6 +5,7 @@ const menu = [
   { to: "/", name: "Main" },
   { to: "/chat", name: "Chats" },
   { to: "/profile", name: "Profile" },
+  { to: "/gists", name: "Gist" },
 ];
 
 export function Menu() {

@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { DefaultThemeProvider } from "./components/theme-context";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { Chat, MainPage, Profile } from "./pages";
+import { Chat, MainPage, Profile, Gist } from "./pages";
 import { store, persistore } from "./store";
 import "./style/global.scss";
 
@@ -32,6 +32,7 @@ ReactDOM.render(
               <Switch>
                 <Route path="/chat" component={() => <Chat />}></Route>
                 <Route path="/profile" component={() => <Profile />}></Route>
+                <Route path="/gists" component={() => <Gist />} />
                 <Route path="/" component={() => <MainPage />}></Route>
                 <Route path="*" component={() => <h1>Error 404</h1>}></Route>
               </Switch>

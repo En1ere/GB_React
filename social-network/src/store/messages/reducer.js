@@ -17,7 +17,7 @@ export const messagesReducer = (state = initialState, action) => {
         messages: {
           ...state.messages,
           [action.payload.roomId]: [
-            ...state.messages[action.payload.roomId],
+            ...(state.messages[action.payload.roomId] || []),
             { ...action.payload.message, id: nanoid() },
           ],
         },
