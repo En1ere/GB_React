@@ -4,3 +4,6 @@ export * from "./header";
 export * from "./layout";
 export * from "./footer";
 export * from "./content-noChat";
+export * from "./auth-form";
+export * from "./auth-template";
+export * from "./route";

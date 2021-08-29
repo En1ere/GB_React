@@ -10,7 +10,7 @@ export function Profile() {
 
   return (
     <div className="profile">
-      <button onClick={() => dispatch(toggleNameVisible())}>Toggle name</button>
+      <button onClick={() => dispatch(toggleNameVisible())}>toggle name</button>
       {nameVisible && <h2>{firstName}</h2>}
     </div>
   );

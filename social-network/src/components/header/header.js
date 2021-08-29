@@ -1,14 +1,21 @@
 import { Switch } from "@material-ui/core";
-import Brightness4Icon from "@material-ui/icons/Brightness4";
 import { useContext } from "react";
+import { firebaseApp } from "../../api/firebase";
 import { ThemeContext } from "../theme-context";
-import styles from "./header.module.scss";
 import { Menu } from "./menu";
+import styles from "./header.module.scss";
+import Brightness4Icon from "@material-ui/icons/Brightness4";
 import classNames from "classnames";
 
-export function Header() {
+const signOut = () => {
+  firebaseApp.auth().signOut();
+};
+
+export function Header({ session }) {
   const { theme, changeTheme } = useContext(ThemeContext);
+
   const isLightTheme = theme.name === "light";
+
   return (
     <header className={styles.header}>
       <div>
@@ -28,6 +35,13 @@ export function Header() {
           checked={isLightTheme}
           onChange={() => changeTheme(isLightTheme ? "dark" : "light")}
         />
+      </div>
+      <div>
+        {session?.email && (
+          <button style={{ cursor: "pointer" }} item={true} onClick={signOut}>
+            Sign Out ({session.email})
+          </button>
+        )}
       </div>
     </header>
   );

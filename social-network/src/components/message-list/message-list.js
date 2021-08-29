@@ -1,16 +1,18 @@
 import { Input, InputAdornment } from "@material-ui/core";
 import { Send } from "@material-ui/icons";
 import { useEffect, useRef, useCallback } from "react";
-import { Message } from "./message";
-import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { handleChangeMessageValue } from "../../store/conversations";
 import { sendMessageWithThunk, editMessageThunk } from "../../store/messages";
+import { Message } from "./message";
 import styles from "./message-list.module.scss";
 
 export const MessageList = () => {
   const { roomId } = useParams();
+  
   const dispatch = useDispatch();
+
   const messages = useSelector((state) => {
     return state.messages.messages[roomId] || [];
   });
