@@ -1,0 +1,36 @@
+$firstColor: #f7e5dc;
+$secondColor: #6f5c56;
+$textColor: #f0ffff;
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;1,300;1,400&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 400;
+}
+.wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  & button {
+    font-size: 26px;
+    border: none;
+    margin-bottom: 20px;
+    color: $textColor;
+    background-color: $secondColor;
+    padding: 10px;
+    &:hover {
+      cursor: pointer;
+      color: $secondColor;
+      background-color: inherit;
+      transition: all 0.3s;
+    }
+  }
+}
