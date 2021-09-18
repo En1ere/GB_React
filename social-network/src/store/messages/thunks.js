@@ -7,22 +7,13 @@ export const sendMessageWithThunk =
   (message, roomId) =>
   async (dispatch, _, { sendMessageApi }) => {
     await sendMessageApi(message, roomId);
-    // @TODO сделать проверку на ошибку START/SUCCESS/ERROR статусы
-    dispatch(sendMessage(message, roomId));
-    dispatch(clearMessageValue(roomId));
-
-    // if (message.author === "User") {
-    //   setTimeout(
-    //     () =>
-    //       dispatch(
-    //         sendMessage(
-    //           { author: "Bot", message: "Hello from bot thunk" },
-    //           roomId
-    //         )
-    //       ),
-    //     1500
-    //   );
-    // }
+    try {
+      await sendMessageApi(roomId, message);
+      dispatch(sendMessage(message, roomId));
+      dispatch(clearMessageValue(roomId));
+    } catch (e) {
+      console.log("error", e);
+    }
   };
 
 export const editMessageThunk =

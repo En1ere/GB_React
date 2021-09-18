@@ -1,12 +1,10 @@
 import debounce from "lodash.debounce";
-// import { db } from "../../api/firebase";
 import { handleChangeMessageValue } from "./actions";
 import { GET_CONVERSATIONS } from "./types";
 
 export const getConversationsFB =
   () =>
   (dispatch, _, { getConversationsApi }) => {
-    // @TODO сделать проверку на ошибку START/SUCCESS/ERROR статусы
     getConversationsApi().then((snapshot) => {
       const conversations = [];
 
@@ -19,7 +17,6 @@ export const getConversationsFB =
   };
 
 const cb = debounce(async (updateConversation) => {
-  // @TODO сделать проверку на ошибку START/SUCCESS/ERROR статусы
   updateConversation();
 }, 500);
 
